@@ -35,7 +35,8 @@ def extract_pdf(file_path: str) -> dict:
     pages = []
     full_text_parts = []
 
-    for page_index in range(len(doc)):
+    page_count = len(doc)
+    for page_index in range(page_count):
         page = doc[page_index]
         try:
             raw_text = page.get_text("text")
@@ -57,7 +58,7 @@ def extract_pdf(file_path: str) -> dict:
     return {
         "pages": pages,
         "full_text": "\n\n".join(full_text_parts),
-        "page_count": len(doc),  # total pages in file, not just non-empty
+        "page_count": page_count,  # total pages in file, not just non-empty
     }
 
 
